@@ -15,9 +15,6 @@ import com.test.data.model.Genre
 import com.test.ui.screen.artist_detail.ArtistDetail
 import com.test.ui.screen.movies.movie_detail.MovieDetail
 import com.test.ui.screen.nowplaying.NowPlayingMovie
-import com.test.ui.screen.popular.PopularMovie
-import com.test.ui.screen.toprated.TopRatedMovie
-import com.test.ui.screen.upcoming.UpcomingMovie
 
 @Composable
 fun Navigation(
@@ -26,24 +23,6 @@ fun Navigation(
     NavHost(navController, startDestination =  Screen.NowPlaying.route) {
         composable(Screen.NowPlaying.route) {
             NowPlayingMovie(
-                navController = navController,
-                genres
-            )
-        }
-        composable(Screen.Popular.route) {
-            PopularMovie(
-                navController = navController,
-                genres
-            )
-        }
-        composable(Screen.TopRated.route) {
-            TopRatedMovie(
-                navController = navController,
-                genres
-            )
-        }
-        composable(Screen.Upcoming.route) {
-            UpcomingMovie(
                 navController = navController,
                 genres
             )

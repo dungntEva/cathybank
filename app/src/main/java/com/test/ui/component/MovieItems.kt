@@ -44,11 +44,11 @@ import com.skydoves.landscapist.placeholder.shimmer.Shimmer
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 import com.test.R
 import com.test.data.datasource.ApiURL
-import com.test.ui.theme.DefaultBackgroundColor
-import com.test.data.model.MovieItem
 import com.test.data.model.Genre
+import com.test.data.model.MovieItem
 import com.test.navigation.Screen
 import com.test.navigation.currentRoute
+import com.test.ui.theme.DefaultBackgroundColor
 import com.test.ui.theme.Purple200
 import com.test.ui.theme.Purple500
 import com.test.ui.theme.SecondaryFontColor

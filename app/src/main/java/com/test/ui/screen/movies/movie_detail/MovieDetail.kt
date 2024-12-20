@@ -87,8 +87,6 @@ fun MovieDetail(navController: NavController, movieId: Int) {
 
     LaunchedEffect(Unit) {
         viewModel.movieDetail(movieId)
-        viewModel.recommendedMovie(movieId)
-        viewModel.movieCredit(movieId)
     }
 
     LaunchedEffect(movieFromDb) {

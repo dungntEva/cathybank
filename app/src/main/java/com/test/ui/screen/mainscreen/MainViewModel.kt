@@ -25,32 +25,12 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val movieRepo: MovieRepository) : ViewModel() {
     val genres: MutableState<DataState<Genres>?> = mutableStateOf(null)
     val movieSearchData: MutableState<DataState<SearchBaseModel>?> = mutableStateOf(null)
-    val tvSeriesSearchData: MutableState<DataState<SearchBaseModel>?> = mutableStateOf(null)
 
     fun genreList() {
         viewModelScope.launch {
             movieRepo.genreList().onEach {
                 genres.value = it
             }.launchIn(viewModelScope)
-        }
-    }
-    @ExperimentalCoroutinesApi
-    @FlowPreview
-    fun searchMovie(searchKey: String) {
-        viewModelScope.launch {
-            flowOf(searchKey).debounce(300)
-                .filter {
-                    it.trim().isEmpty().not()
-                }
-                .distinctUntilChanged()
-                .flatMapLatest {
-                    movieRepo.movieSearch(it)
-                }.collect {
-                    if (it is DataState.Success){
-                        it.data
-                    }
-                    movieSearchData.value = it
-                }
         }
     }
 }

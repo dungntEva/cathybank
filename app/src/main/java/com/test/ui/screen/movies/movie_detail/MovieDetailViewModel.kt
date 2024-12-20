@@ -54,48 +54,6 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun recommendedMovie(movieId: Int) {
-        viewModelScope.launch {
-            repo.recommendedMovie(movieId).onEach {
-                when (it) {
-                    is DataState.Loading -> {
-                        _isLoading.value = true
-                    }
-
-                    is DataState.Success -> {
-                        _recommendedMovie.value = it.data
-                        _isLoading.value = false
-                    }
-
-                    is DataState.Error -> {
-                        _isLoading.value = false
-                    }
-                }
-            }.launchIn(viewModelScope)
-        }
-    }
-
-    fun movieCredit(movieId: Int) {
-        viewModelScope.launch {
-            repo.movieCredit(movieId).onEach {
-                when (it) {
-                    is DataState.Loading -> {
-                        _isLoading.value = true
-                    }
-
-                    is DataState.Success -> {
-                        _movieCredit.value = it.data
-                        _isLoading.value = false
-                    }
-
-                    is DataState.Error -> {
-                        _isLoading.value = false
-                    }
-                }
-            }.launchIn(viewModelScope)
-        }
-    }
-
     fun insertMovieDetail(movieDetail: MovieDetail) {
         viewModelScope.launch {
             movieDetailDao.insert(movieDetail)

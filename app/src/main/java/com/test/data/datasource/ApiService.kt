@@ -19,41 +19,10 @@ interface ApiService {
         @Query("api_key") apiKey: String = AppConstant.API_KEY,
     ): BaseModelMovie
 
-    @GET("movie/popular")
-    suspend fun popularMovies(
-        @Query("page") page: Int,
-        @Query("with_genres") genreId: String?,
-        @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): BaseModelMovie
-
-    @GET("movie/top_rated")
-    suspend fun topRatedMovies(
-        @Query("page") page: Int,
-        @Query("with_genres") genreId: String?,
-        @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): BaseModelMovie
-
-    @GET("movie/upcoming")
-    suspend fun upcomingMovies(
-        @Query("page") page: Int,
-        @Query("with_genres") genreId: String?,
-        @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): BaseModelMovie
-
     @GET("movie/{movieId}")
     suspend fun movieDetail(
         @Path("movieId") movieId: Int, @Query("api_key") apiKey: String = AppConstant.API_KEY,
     ): MovieDetail
-
-    @GET("movie/{movieId}/recommendations")
-    suspend fun recommendedMovie(
-        @Path("movieId") movieId: Int, @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): BaseModelMovie
-
-    @GET("search/movie?page=1&include_adult=false")
-    suspend fun searchMovie(
-        @Query("query") searchKey: String, @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): SearchBaseModel
 
     @GET("genre/movie/list")
     suspend fun genreList(@Query("api_key") apiKey: String = AppConstant.API_KEY): Genres
@@ -64,11 +33,6 @@ interface ApiService {
         @Query("with_genres") genreId: String,
         @Query("api_key") apiKey: String = AppConstant.API_KEY,
     ): BaseModelMovie
-
-    @GET("movie/{movieId}/credits")
-    suspend fun movieCredit(
-        @Path("movieId") movieId: Int, @Query("api_key") apiKey: String = AppConstant.API_KEY,
-    ): Artist
 
     @GET("person/{personId}")
     suspend fun artistDetail(
