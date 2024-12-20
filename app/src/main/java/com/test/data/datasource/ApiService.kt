@@ -1,6 +1,7 @@
 package com.test.data.datasource
 
 import com.test.data.model.BaseModelMovie
+import com.test.data.model.BaseModelTravel
 import com.test.data.model.Genres
 import com.test.data.model.MovieDetail
 import com.test.utils.AppConstant
@@ -9,6 +10,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
+    @GET("{lang}/Attractions/All")
+    suspend fun getAllTravel(
+        @Path("lang") lang: String,
+        @Query("page") page: Int,
+    ): BaseModelTravel
+
     @GET("movie/now_playing")
     suspend fun nowPlayingMovies(
         @Query("page") page: Int,

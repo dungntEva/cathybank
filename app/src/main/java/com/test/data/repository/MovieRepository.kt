@@ -5,12 +5,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.test.data.datasource.ApiService
 import com.test.data.datasource.paging.NowPlayingMoviePagingDataSource
+import com.test.data.datasource.paging.TravelPagingDataSource
 import com.test.data.model.Artist
 import com.test.data.model.ArtistDetail
 import com.test.data.model.Genres
 import com.test.data.model.MovieDetail
 import com.test.data.model.MovieItem
 import com.test.data.model.SearchBaseModel
+import com.test.data.model.TravelItem
 import com.test.utils.network.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -32,6 +34,11 @@ class MovieRepository @Inject constructor(
 
     override fun nowPlayingMoviePagingDataSource(genreId: String?): Flow<PagingData<MovieItem>> = Pager(
         pagingSourceFactory = { NowPlayingMoviePagingDataSource(apiService, genreId) },
+        config = PagingConfig(pageSize = 20)
+    ).flow
+
+    override fun travelPagingDataSource(lang: String?): Flow<PagingData<TravelItem>> = Pager(
+        pagingSourceFactory = { TravelPagingDataSource(apiService, lang) },
         config = PagingConfig(pageSize = 20)
     ).flow
 

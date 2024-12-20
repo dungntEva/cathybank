@@ -46,6 +46,7 @@ import com.test.R
 import com.test.data.datasource.ApiURL
 import com.test.data.model.Genre
 import com.test.data.model.MovieItem
+import com.test.data.model.TravelItem
 import com.test.navigation.Screen
 import com.test.navigation.currentRoute
 import com.test.ui.theme.DefaultBackgroundColor
@@ -60,7 +61,7 @@ import com.test.utils.pagingLoadingState
 @Composable
 fun MovieItems(
     navController: NavController,
-    moviesItems: LazyPagingItems<MovieItem>,
+    moviesItems: LazyPagingItems<TravelItem>,
     genres: ArrayList<Genre>? = null,
     selectedName: Genre?,
     onclick: (genreId: Genre?) -> Unit
@@ -119,7 +120,7 @@ fun MovieItems(
 
 
 @Composable
-fun MovieItemView(item: MovieItem, navController: NavController) {
+fun MovieItemView(item: TravelItem, navController: NavController) {
     Column(modifier = Modifier.padding(start = 5.dp, end = 5.dp, top = 0.dp, bottom = 10.dp)) {
         CoilImage(
             modifier = Modifier
@@ -128,7 +129,7 @@ fun MovieItemView(item: MovieItem, navController: NavController) {
                 .clickable {
                     navController.navigate(Screen.MovieDetail.route.plus("/${item.id}"))
                 },
-            imageModel = { ApiURL.IMAGE_URL.plus(item.posterPath) },
+            imageModel = { ApiURL.IMAGE_URL.plus(item.images[0].src) },
             imageOptions = ImageOptions(
                 contentScale = ContentScale.Crop,
                 alignment = Alignment.Center,
