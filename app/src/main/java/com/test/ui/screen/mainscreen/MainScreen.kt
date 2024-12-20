@@ -52,10 +52,6 @@ fun MainScreen() {
         2
     }
 
-    LaunchedEffect(Unit) {
-        mainViewModel.genreList()
-    }
-
     if (mainViewModel.genres.value is DataState.Success<Genres>) {
         genreList =
             (mainViewModel.genres.value as DataState.Success<Genres>).data.genres as ArrayList

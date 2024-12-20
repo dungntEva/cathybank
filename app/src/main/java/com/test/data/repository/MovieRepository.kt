@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.test.data.datasource.ApiService
-import com.test.data.datasource.paging.GenrePagingDataSource
 import com.test.data.datasource.paging.NowPlayingMoviePagingDataSource
 import com.test.data.model.Artist
 import com.test.data.model.ArtistDetail
@@ -31,35 +30,8 @@ class MovieRepository @Inject constructor(
         }
     }
 
-    override suspend fun genreList(): Flow<DataState<Genres>> = flow {
-        emit(DataState.Loading)
-        try {
-            val genreResult = apiService.genreList()
-            emit(DataState.Success(genreResult))
-
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
-
-    override suspend fun artistDetail(personId: Int): Flow<DataState<ArtistDetail>> = flow {
-        emit(DataState.Loading)
-        try {
-            val artistDetailResult = apiService.artistDetail(personId)
-            emit(DataState.Success(artistDetailResult))
-
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
-
     override fun nowPlayingMoviePagingDataSource(genreId: String?): Flow<PagingData<MovieItem>> = Pager(
         pagingSourceFactory = { NowPlayingMoviePagingDataSource(apiService, genreId) },
-        config = PagingConfig(pageSize = 20)
-    ).flow
-
-    override fun genrePagingDataSource(genreId: String): Flow<PagingData<MovieItem>> = Pager(
-        pagingSourceFactory = { GenrePagingDataSource(apiService, genreId) },
         config = PagingConfig(pageSize = 20)
     ).flow
 

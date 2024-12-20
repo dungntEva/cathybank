@@ -25,12 +25,4 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val movieRepo: MovieRepository) : ViewModel() {
     val genres: MutableState<DataState<Genres>?> = mutableStateOf(null)
     val movieSearchData: MutableState<DataState<SearchBaseModel>?> = mutableStateOf(null)
-
-    fun genreList() {
-        viewModelScope.launch {
-            movieRepo.genreList().onEach {
-                genres.value = it
-            }.launchIn(viewModelScope)
-        }
-    }
 }

@@ -26,9 +26,6 @@ sealed class Screen(
     val objectPath: String = ""
 ) {
     object NowPlaying : Screen("now_playing_movie")
-    object Popular : Screen("popular_movie")
-    object TopRated : Screen("top_rated_movie")
-    object Upcoming : Screen("upcoming_movie")
 
     object MovieDetail :
         Screen("movie_detail", objectName = "movieItem", objectPath = "/{movieItem}")
@@ -36,46 +33,6 @@ sealed class Screen(
     object ArtistDetail :
         Screen("artist_detail", objectName = "artistId", objectPath = "/{artistId}")
 
-    // Bottom Navigation
-    object NowPlayingNav : Screen("now_playing_movie", title = R.string.now_playing, navIcon = {
-        Icon(
-            Icons.Filled.Home,
-            contentDescription = "search",
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .offset(x = 10.dp)
-        )
-    })
-
-    object PopularNav : Screen("popular_movie", title = R.string.popular, navIcon = {
-        Icon(
-            Icons.Filled.Timeline,
-            contentDescription = "search",
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .offset(x = 10.dp)
-        )
-    })
-
-    object TopRatedNav : Screen("top_rated_movie", title = R.string.top_rated, navIcon = {
-        Icon(
-            Icons.Filled.Star,
-            contentDescription = "search",
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .offset(x = 10.dp)
-        )
-    })
-
-    object UpcomingNav : Screen("upcoming_movie", title = R.string.up_coming, navIcon = {
-        Icon(
-            Icons.Filled.KeyboardArrowDown,
-            contentDescription = "search",
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .offset(x = 10.dp)
-        )
-    })
     object FavoriteMovie :
         Screen("favorite_movie")
 }

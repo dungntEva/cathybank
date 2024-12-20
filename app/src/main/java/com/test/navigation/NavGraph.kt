@@ -12,7 +12,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.test.R
 import com.test.data.model.Genre
-import com.test.ui.screen.artist_detail.ArtistDetail
 import com.test.ui.screen.movies.movie_detail.MovieDetail
 import com.test.ui.screen.nowplaying.NowPlayingMovie
 
@@ -38,20 +37,6 @@ fun Navigation(
             movieId?.let {
                 MovieDetail(
                     navController = navController, movieId
-                )
-            }
-        }
-        composable(
-            Screen.ArtistDetail.route.plus(Screen.ArtistDetail.objectPath),
-            arguments = listOf(navArgument(Screen.ArtistDetail.objectName) {
-                type = NavType.IntType
-            })
-        ) {
-            label = stringResource(R.string.artist_detail)
-            val artistId = it.arguments?.getInt(Screen.ArtistDetail.objectName)
-            artistId?.let {
-                ArtistDetail(
-                    artistId
                 )
             }
         }
